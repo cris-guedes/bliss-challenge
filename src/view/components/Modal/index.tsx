@@ -7,8 +7,6 @@ type Props = {
 }
 
 const Modal = ({ children, isOpenned, closeModal }: Props) => {
-  //const contentRef = useRef<HTMLDivElement>(null)
-
   if (!isOpenned) {
     return null
   }

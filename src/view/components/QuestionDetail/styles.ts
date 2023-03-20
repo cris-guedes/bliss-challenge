@@ -14,7 +14,6 @@ export const Content = styled.div`
 
   flex-direction: column;
 `
-
 export const QuestionArea = styled.div``
 
 export const OptionsArea = styled.div`
@@ -23,7 +22,6 @@ export const OptionsArea = styled.div`
 
   gap: 1rem;
 `
-
 export const OptionCard = styled.div`
   ${({ theme }) => css`
     background: ${theme.colors.gray800};

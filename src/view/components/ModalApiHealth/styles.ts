@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components'
 
 export const Container = styled.div``
+
 export const Hug = styled.div`
   display: flex;
   align-items: center;
