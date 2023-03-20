@@ -1,17 +1,17 @@
 import useNetworStatus from '@/view/hooks/useNetworkStatus'
 import Modal from '../Modal'
 
-import * as S from './styles'
+import { Container, Text } from './styles'
 
 function ModalOffline() {
   const isOnline = useNetworStatus()
 
   return (
-    <S.Container>
+    <Container>
       <Modal closeModal={() => {}} isOpenned={!navigator.onLine}>
-        <>you are Offline</>
+        <Text>you are Offline</Text>
       </Modal>
-    </S.Container>
+    </Container>
   )
 }
 export default ModalOffline

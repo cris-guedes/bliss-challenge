@@ -12,7 +12,7 @@ function useQuestions() {
   async function checkApiIsReady() {
     setIsLoading(true)
     try {
-      const { data, status } = await healthService.checkStatus()
+      const { status } = await healthService.checkStatus()
       if (status == 503) {
         setApiIsready(false)
         return false
@@ -22,7 +22,7 @@ function useQuestions() {
       }
     } catch (e) {
       setApiIsready(false)
-      throw new Error('')
+      throw new Error('Api is not ready')
     } finally {
       setIsLoading(false)
     }
