@@ -2,12 +2,16 @@ import useQuestions from '@/view/hooks/useQuestions'
 import { TQuestion } from '@/shared/types/question'
 
 import * as S from './styles'
+import { useState } from 'react'
 
 type Props = {
   question: TQuestion
 }
 
 function QuestionDetail({ question }: Props) {
+  const [isVoted, setIsVoted] = useState(false)
+  const [optionChosed, setOptionChoses] = useState(-1)
+
   const { updateQuestion } = useQuestions()
 
   function handleClick(optionIndex: number) {
@@ -18,6 +22,10 @@ function QuestionDetail({ question }: Props) {
     choice.votes++
 
     updateQuestion(updatedQuestion)
+
+    setOptionChoses(optionIndex)
+
+    setIsVoted(true)
   }
 
   return (
@@ -35,7 +43,12 @@ function QuestionDetail({ question }: Props) {
 
         <S.OptionsArea>
           {question.choices.map((choice, index) => (
-            <S.OptionHug key={index} onClick={() => handleClick(index)}>
+            <S.OptionHug
+              isChosed={index === optionChosed}
+              disabled={isVoted}
+              key={index}
+              onClick={() => handleClick(index)}
+            >
               <S.OptionCard>
                 <S.TextOptions>{choice.choice} </S.TextOptions>
                 <S.Votes>Votes: {choice.votes}</S.Votes>

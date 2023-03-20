@@ -1,6 +1,11 @@
 import { Link } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
+type Props = {
+  disabled: boolean
+  isChosed: boolean
+}
+
 export const Container = styled.div`
   margin: auto;
 `
@@ -23,15 +28,6 @@ export const OptionsArea = styled.div`
   gap: 1rem;
 `
 export const OptionCard = styled.div`
-  ${({ theme }) => css`
-    background: ${theme.colors.gray800};
-  `}
-  flex:1;
-  &&:hover {
-    opacity: 0.9;
-  }
-  cursor: pointer;
-  border-radius: 0.5rem;
   padding: 1rem;
 `
 
@@ -75,7 +71,23 @@ export const LastUpdate = styled.h6``
 export const ImageContainer = styled.div`
   margin-bottom: 1rem;
 `
-export const OptionHug = styled.div`
+export const OptionHug = styled.button<Props>`
+  cursor: not-allowed;
+  border-radius: 0.5rem;
+  flex: 1;
+  ${({ theme, disabled, isChosed }) => css`
+    background: ${isChosed ? theme.colors.success : theme.colors.gray800};
+    opacity: ${disabled ? 0.4 : 1};
+
+    ${!disabled &&
+    css`
+      &&:hover {
+        opacity: 0.9;
+      }
+      cursor: pointer;
+    `}
+  `}
+
   display: flex;
   width: 100%;
 `
